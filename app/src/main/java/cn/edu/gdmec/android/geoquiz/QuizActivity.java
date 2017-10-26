@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.geoquiz;
 //学习android应用的基本组成，activity，界面布局（layout）以及显式intent
 //android用户界面设计，xml
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,6 +90,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 //start cheatactivity
+                //Intent i = new Intent ( QuizActivity.this, CheatActivity.class );
+                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue ();
+                Intent i = CheatActivity.newIntent ( QuizActivity.this, answerIsTrue );
+                startActivity ( i );
             }
         } );
         if (savedInstanceState != null) {
